@@ -6,6 +6,7 @@ import 'input/shake_detector.dart';
 import 'ui/hud.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   final game = FlutterGame();
   final detector = ShakeDetector(onShake: game.onShake)..start();
   runApp(FlutterApp(game: game, detector: detector));
