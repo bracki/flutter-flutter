@@ -55,15 +55,27 @@ class Butterfly extends PositionComponent
     final color = shiftHue(acidPalette[(_seed.toInt()) % acidPalette.length], hue);
     final glow = Paint()
       ..color = color
-      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8);
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12);
+    final wing = Paint()..color = color;
+    final core = Paint()..color = Colors.white.withOpacity(0.9);
     final cx = size.x / 2, cy = size.y / 2;
     for (final sign in [-1.0, 1.0]) {
-      final rect = Rect.fromCenter(
-        center: Offset(cx + sign * 9 * wingScale, cy),
-        width: 16 * wingScale,
-        height: 26,
-      );
-      canvas.drawOval(rect, glow);
+      final center = Offset(cx + sign * 10 * wingScale, cy);
+      final rect = Rect.fromCenter(center: center, width: 18 * wingScale, height: 28);
+      canvas.drawOval(rect.inflate(4), glow); // bright halo
+      canvas.drawOval(rect, wing); // saturated wing
+      canvas.drawOval(
+        Rect.fromCenter(center: center, width: 8 * wingScale, height: 12),
+        core,
+      ); // white core so it reads against the tie-dye
     }
+    // dark body for definition
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+        Rect.fromCenter(center: Offset(cx, cy), width: 4, height: 24),
+        const Radius.circular(2),
+      ),
+      Paint()..color = Colors.black.withOpacity(0.65),
+    );
   }
 }
