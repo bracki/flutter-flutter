@@ -22,7 +22,7 @@ class Hud extends StatelessWidget {
                 const SizedBox(width: 8),
                 ValueListenableBuilder<int>(
                   valueListenable: caught,
-                  builder: (_, v, __) => Text(
+                  builder: (_, v, _) => Text(
                     '$v',
                     style: const TextStyle(
                       fontSize: 24,

@@ -24,13 +24,13 @@ class Flower extends PositionComponent {
     final r = (size.x / 2) * bloom * pulse;
     final base = shiftHue(acidPalette[3], hue); // amber-anchored
     final glow = Paint()
-      ..color = base.withOpacity(0.9)
+      ..color = base.withValues(alpha: 0.9)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 18);
     canvas.drawCircle(Offset(size.x / 2, size.y / 2), r, glow);
     canvas.drawCircle(
       Offset(size.x / 2, size.y / 2),
       r * 0.5,
-      Paint()..color = Colors.white.withOpacity(0.85 * bloom),
+      Paint()..color = Colors.white.withValues(alpha: 0.85 * bloom),
     );
   }
 }

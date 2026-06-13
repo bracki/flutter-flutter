@@ -17,8 +17,10 @@ class TieDyeBackground extends PositionComponent {
   void render(Canvas canvas) {
     final t = phase % 1.0;
     final a = Alignment(math.cos(t * 2 * math.pi), math.sin(t * 2 * math.pi));
-    final colors = [for (final c in acidPalette) shiftHue(c, hueOffset)]
-      ..add(shiftHue(acidPalette.first, hueOffset));
+    final colors = [
+      for (final c in acidPalette) shiftHue(c, hueOffset),
+      shiftHue(acidPalette.first, hueOffset),
+    ];
     final rect = Offset.zero & Size(size.x, size.y);
     final paint = Paint()
       ..shader = LinearGradient(begin: a, end: -a, colors: colors).createShader(rect);

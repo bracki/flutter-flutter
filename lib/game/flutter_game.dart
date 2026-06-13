@@ -34,12 +34,12 @@ class FlutterGame extends FlameGame {
   Vector2 get _bounds => (size.x == 0 || size.y == 0) ? Vector2(400, 800) : size;
 
   @override
-  void onGameResize(Vector2 newSize) {
-    super.onGameResize(newSize);
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
     if (isLoaded) {
-      _bg.size = newSize;
+      _bg.size = size;
       for (final b in children.whereType<Butterfly>()) {
-        b.bounds = newSize;
+        b.bounds = size;
       }
     }
   }
